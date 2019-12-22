@@ -63,7 +63,7 @@ class UserController extends Controller
         $user->nationality_id = $request->nacionalidad;
         $user->save();
 
-        $request->session()->flash('guardado', 'Usuario creado');
+        $request->session()->flash('ok', 'Usuario creado');
 
         return back();
     }
@@ -121,7 +121,7 @@ class UserController extends Controller
         $user->nationality_id = $request->nacionalidad;
         $user->save();
 
-        $request->session()->flash('guardado', 'Usuario editado');
+        $request->session()->flash('ok', 'Usuario editado');
 
         return back();
     }
@@ -134,7 +134,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+
+        \Request::session()->flash('ok', 'Usuario borrado');
+
+        return back();
     }
 
 }

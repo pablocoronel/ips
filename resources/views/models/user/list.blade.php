@@ -18,9 +18,9 @@
             @endif
             
             {{-- De exito --}}
-            @if(Session::has('guardado'))
+            @if(Session::has('ok'))
                 <div class="card-panel green accent-4" role="alert">
-                    {{Session::get('guardado', '')}}
+                    {{Session::get('ok', '')}}
                 </div>
             @endif
         </div>
@@ -50,10 +50,18 @@
                             <td>{{$user->email}}</td>
                             <td>{{$user->nationality->nationality}}</td>
                             <td>
-                                <a href={{asset('users/' . $user->id . '/edit')}}>Editar</a>
+                                <a href={{asset('users/' . $user->id . '/edit')}} class="waves-effect waves-light btn-small">Editar</a>
                             </td>
                             <td>
-                                <a href="{{asset('users/delete')}}">Borrar</a>
+                                {!! Form::open(['action' => ['UserController@destroy',  $user->id], 'method' => 'DELETE']) !!}
+        
+                                    {!! Form::token() !!}
+        
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    
+                                    {!! Form::submit('Borrar', ['class' => 'waves-effect waves-light btn-small red']) !!}
+                                {!! Form::close() !!}
+
                             </td>
                         </tr>
                     @endforeach

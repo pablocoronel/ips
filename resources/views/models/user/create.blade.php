@@ -18,9 +18,9 @@
             @endif
             
             {{-- De exito --}}
-            @if(Session::has('guardado'))
+            @if(Session::has('ok'))
                 <div class="card-panel green accent-4" role="alert">
-                    {{Session::get('guardado', '')}}
+                    {{Session::get('ok', '')}}
                 </div>
             @endif
         </div>
