@@ -38,10 +38,10 @@ class UserRequest extends FormRequest
             // editar
             case 'PATCH':
                 return [
-                    'username'     => 'required|string|unique:user,username',
+                    'username'     => 'required|string|unique:user,username,' . $this->all()['id'],
                     'nombre'       => 'required|string',
                     'apellido'     => 'required|string',
-                    'email'        => 'required|email|unique:user,email',
+                    'email'        => 'required|email|unique:user,email,' . $this->all()['id'],
                     'nacionalidad' => 'required|numeric'
                 ];
                 break;

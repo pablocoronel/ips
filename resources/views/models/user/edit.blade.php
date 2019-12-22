@@ -29,42 +29,44 @@
     <div class="row">
         <div class="col s12 m6 offset-m3">
             <div class="card-panel">
-                <h4 class="header2">Crear usuario</h4>
+                <h4 class="header2">Editar usuario</h4>
                 <div class="row">
-                    {!! Form::open(['action' => 'UserController@store', 'method' => 'POST']) !!}
+                    {!! Form::open(['action' => ['UserController@update',  $user->id], 'method' => 'PATCH']) !!}
                     
+                    {!! Form::hidden('id', $user->id) !!}
+
                     <div class="row">
                         <div class="input-field col s12">
-                          {!! Form::text('username', '', ['placeholder' => 'Username']) !!}
+                          {!! Form::text('username', $user->username, ['placeholder' => 'Username']) !!}
                           {!! Form::label('username', 'Username') !!}
                         </div>
                       </div>
                     <div class="row">
                       <div class="input-field col s12">
-                        {!! Form::text('nombre', '', ['placeholder' => 'Juan']) !!}
+                        {!! Form::text('nombre', $user->nombre, ['placeholder' => 'Juan']) !!}
                         {!! Form::label('nombre', 'Nombre') !!}
                       </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                          {!! Form::text('apellido', '', ['placeholder' => 'Martínez']) !!}
+                          {!! Form::text('apellido', $user->apellido, ['placeholder' => 'Martínez']) !!}
                           {!! Form::label('apellido', 'Apellido') !!}
                         </div>
                       </div>
                     <div class="row">
                       <div class="input-field col s12">
-                        {!! Form::text('email', '', ['placeholder' => 'juan@gmail.com']) !!}
+                        {!! Form::text('email', $user->email, ['placeholder' => 'juan@gmail.com']) !!}
                         {!! Form::label('email', 'Email') !!}
                       </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            {!! Form::select('nacionalidad', $nationalities, null, ['placeholder' => 'Nacionalidad', 'class' => 'browser-default']) !!}
+                            {!! Form::select('nacionalidad', $nationalities, $user->nationality_id, ['placeholder' => 'Nacionalidad', 'class' => 'browser-default']) !!}
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <button class="btn cyan waves-effect waves-light right" type="submit" name="action">Crear
+                            <button class="btn cyan waves-effect waves-light right" type="submit" name="action">Editar
                             <i class="mdi-content-send right"></i>
                             </button>
                         </div>

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Nationality;
 use App\User;
-use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -16,7 +16,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $data = User::all();
+
+        $args = [
+            'users' => $data
+        ];
+
+        return view('models.user.list', $args);
     }
 
     /**
@@ -26,6 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $nationalities    = [];
         $nationality_data = Nationality::all();
 
         foreach ($nationality_data as $nationality) {
@@ -80,7 +87,20 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user             = User::find($id);
+        $nationalities    = [];
+        $nationality_data = Nationality::all();
+
+        foreach ($nationality_data as $nationality) {
+            $nationalities[$nationality->id] = $nationality->nationality;
+        }
+
+        $args = [
+            'user'          => $user,
+            'nationalities' => $nationalities
+        ];
+
+        return view('models.user.edit', $args);
     }
 
     /**
@@ -90,9 +110,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        $user->username       = $request->username;
+        $user->nombre         = $request->nombre;
+        $user->apellido       = $request->apellido;
+        $user->email          = $request->email;
+        $user->nationality_id = $request->nacionalidad;
+        $user->save();
+
+        $request->session()->flash('guardado', 'Usuario editado');
+
+        return back();
     }
 
     /**

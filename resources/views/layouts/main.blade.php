@@ -15,6 +15,17 @@
 </head>
 <body>
     <div class="container">
+        <nav>
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo right">IPS</a>
+              <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="{{asset('users')}}">Listado</a></li>
+                <li><a href="{{asset('users/create')}}">Crear</a></li>
+                <li><a href="{{asset('users/search')}}">Buscar</a></li>
+              </ul>
+            </div>
+          </nav>
+
         @yield('content')
     </div>
     
