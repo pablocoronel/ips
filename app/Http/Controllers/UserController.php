@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Nationality;
 use App\User;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -44,7 +45,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $user = new User();
 
@@ -54,6 +55,8 @@ class UserController extends Controller
         $user->email          = $request->email;
         $user->nationality_id = $request->nacionalidad;
         $user->save();
+
+        $request->session()->flash('guardado', 'Usuario creado');
 
         return back();
     }

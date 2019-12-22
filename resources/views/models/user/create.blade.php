@@ -3,6 +3,29 @@
 @section('title', 'IPS - crear usuario')
 
 @section('content')
+    {{-- Mensajes --}}
+    <div class="row">
+        <div class="col s12">
+            {{-- De error --}}
+            @if ($errors->any())
+                <div class="card-panel orange lighten-1">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            
+            {{-- De exito --}}
+            @if(Session::has('guardado'))
+                <div class="card-panel green accent-4" role="alert">
+                    {{Session::get('guardado', '')}}
+                </div>
+            @endif
+        </div>
+    </div>
+
     <div class="row">
         <div class="col s12 m6 offset-m3">
             <div class="card-panel">
