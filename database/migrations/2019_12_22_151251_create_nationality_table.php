@@ -17,8 +17,6 @@ class CreateNationalityTable extends Migration
             $table->increments('id');
             
             $table->string('nationality');
-
-            $table->timestamps();
         });
     }
 

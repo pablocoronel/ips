@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Nationality;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        $nationalities = [1 => 'a'];
+        $nationality_data = Nationality::all();
+
+        foreach ($nationality_data as $nationality) {
+            $nationalities[$nationality->id] = $nationality->nationality;
+        }
 
         $args = [
             'nationalities' => $nationalities
@@ -97,4 +102,5 @@ class UserController extends Controller
     {
         //
     }
+
 }
