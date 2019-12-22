@@ -21,11 +21,10 @@
               <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <li><a href="{{asset('users')}}">Listado</a></li>
                 <li><a href="{{asset('users/create')}}">Crear</a></li>
-                <li><a href="{{asset('users/search')}}">Buscar</a></li>
               </ul>
             </div>
-          </nav>
-
+        </nav>
+        
         @yield('content')
     </div>
     

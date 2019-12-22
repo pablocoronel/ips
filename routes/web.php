@@ -12,3 +12,4 @@
  */
 
 Route::resource('users', 'UserController');
+Route::post('search', 'UserController@search');

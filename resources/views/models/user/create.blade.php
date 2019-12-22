@@ -64,9 +64,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <button class="btn cyan waves-effect waves-light right" type="submit" name="action">Crear
-                            <i class="mdi-content-send right"></i>
-                            </button>
+                            {!! Form::submit('Crear', ['class' => 'btn cyan waves-effect waves-light right']) !!}
                         </div>
                     </div>
                     {!! Form::close() !!}

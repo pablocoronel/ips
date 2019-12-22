@@ -3,6 +3,14 @@
 @section('title', 'IPS - lista usuario')
 
 @section('content')
+    {!! Form::open(['action' => 'UserController@search', 'method' => 'POST']) !!}
+    <div class="input-field">
+    {!! Form::text('busqueda') !!}
+
+    {!! Form::submit('Buscar', ['class' => 'waves-effect waves-light btn-small']) !!}
+    </div>
+    {!! Form::close() !!}
+
     {{-- Mensajes --}}
     <div class="row">
         <div class="col s12">
@@ -48,7 +56,7 @@
                             <td>{{$user->nombre}}</td>
                             <td>{{$user->apellido}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->nationality->nationality}}</td>
+                            <td>{{$user->nationality_user->nationality}}</td>
                             <td>
                                 <a href={{asset('users/' . $user->id . '/edit')}} class="waves-effect waves-light btn-small">Editar</a>
                             </td>

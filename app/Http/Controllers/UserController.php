@@ -141,4 +141,24 @@ class UserController extends Controller
         return back();
     }
 
+    /**
+     * @param Request $request
+     */
+    public function search(Request $request)
+    {
+        $data = User::join('nationality', 'user.nationality_id', '=', 'nationality.id')
+            ->where('user.username', $request->busqueda)
+            ->orWhere('user.nombre', $request->busqueda)
+            ->orWhere('user.apellido', $request->busqueda)
+            ->orWhere('user.email', $request->busqueda)
+            ->orWhere('nationality.nationality', $request->busqueda)
+            ->get();
+
+        $args = [
+            'users' => $data
+        ];
+
+        return view('models.user.list', $args);
+    }
+
 }

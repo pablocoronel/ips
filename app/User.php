@@ -30,7 +30,7 @@ class User extends Authenticatable
     /**
      * @return mixed
      */
-    public function nationality(){
+    public function nationality_user(){
         return $this->belongsTo('App\Nationality', 'nationality_id', 'id');
     }
 }
